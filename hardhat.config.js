@@ -8,6 +8,10 @@ require("hardhat-gas-reporter");
 module.exports = {
   solidity: "0.8.17",
   networks: {
+    /* README: https://hardhat.org/hardhat-network/docs/metamask-issue */
+    hardhat: {
+      chainId: 1337
+    },
     goerli: {
       url: `https://eth-goerli.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
       accounts: [process.env.ALCHEMY_PRIVATE_KEY]
