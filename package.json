@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "npx hardhat clean && npx hardhat compile"
   },
-  "author": "apmyp-v",
+  "author": "apmyp-eth",
   "license": "MIT",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^1.0.2",

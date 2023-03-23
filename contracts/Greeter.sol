@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 /// @title Sample contract
-/// @author apmyp-v
+/// @author apmyp-eth
 contract Greeter {
     address owner;
     string private greet;
