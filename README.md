@@ -34,10 +34,13 @@ npx hardhat clean && npx hardhat compile
 ## Запуск тестов, проверка покрытия кода тестами
 
 ```console
-npx hardhat test
+npx hardhat test [--grep text]
 REPORT_GAS=true npx hardhat test
 npx hardhat coverage
 ```
+
+В коде тестов можно добавить `.only` к `it`, чтобы выполнить конкретный тест, либо использовать `grep` в консоли при вызове тестов.
+
 ## Запуск локальной ноды и разворачивание на ней контракта
 
 ```
