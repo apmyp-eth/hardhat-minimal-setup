@@ -1,20 +1,20 @@
 # Hardhat Minimal Setup project
 
-Я создал этот проект как напоминалку или, если угодно, шаблон для последующих проектов.
+I created this project as a reminder or, if you like, a template for future projects.
 
-Этот проект использует и готов для настройки следующих плагинов:
+This project uses and is ready to configure the following plugins:
 
-* [solidity-coverage](https://www.npmjs.com/package/solidity-coverage) - покрытие кода контрактов тестами
-* [hardhat-gas-reporter](https://www.npmjs.com/package/hardhat-gas-reporter) - оценка затрат газа, использует CoinMarketCap для получения цен
-* [hardhat-etherscan](https://www.npmjs.com/package/@nomiclabs/hardhat-etherscan) - для верификации контрактов на Etherscan
+* [solidity-coverage](https://www.npmjs.com/package/solidity-coverage) - coverage of contract code with tests
+* [hardhat-gas-reporter](https://www.npmjs.com/package/hardhat-gas-reporter) - gas cost estimate, uses CoinMarketCap to get prices
+* [hardhat-etherscan](https://www.npmjs.com/package/@nomiclabs/hardhat-etherscan) - to verify contracts on Etherscan/Bscscan/etc
 
-Также в `hardhat.config.json` я добавил настройку работы с актуальной тестовой сетью Goerli используя сервис Alchemy.
+Also in `hardhat.config.json` I added the setting for working with the actual Goerli test network using the Alchemy service.
 
-**ВНИМАНИЕ: скопировать `.env.example` в `.env`!**
+**WARNING: copy `.env.example` to `.env`!**
 
-# Создание проекта
+# Project creatiion
 
-Были использованы следующие команды:
+The following commands have been used:
 
 ```console
 mkdir {project}
@@ -24,14 +24,15 @@ npm install --save-dev hardhat
 npx hardhat
 ```
 
-# Типичные команды при работе с проектом
+# Typical commands when working with a project
 
-## Компиляция
+## Compilation
+
 ```console
 npx hardhat clean && npx hardhat compile
 ```
 
-## Запуск тестов, проверка покрытия кода тестами
+## Running tests, checking code coverage with tests
 
 ```console
 npx hardhat test [--grep text]
@@ -39,29 +40,32 @@ REPORT_GAS=true npx hardhat test
 npx hardhat coverage
 ```
 
-В коде тестов можно добавить `.only` к `it`, чтобы выполнить конкретный тест, либо использовать `grep` в консоли при вызове тестов.
+In test code, you can add `.only` to `it` to run a specific test, or you can use `grep` in the console when calling the tests.
 
-## Запуск локальной ноды и разворачивание на ней контракта
+## Running a local node and deploying a contract on it
 
 ```
 npx hardhat node
 npx hardhat run scripts/deploy.js --network localhost
 ```
 
-## Верификация кода контракта на Etherscan
+## Contract code verification on Etherscan
+
 ```console
 npx hardhat verify --network goerli {contractAddress}
 ```
 
 ## Command line completion
 
-Для удобства, чтобы не писать `npx hardhat` и автоматически подставлялись команды, можно поставить:
+For convenience, in order not to write `npx hardhat` and commands are automatically substituted, you can:
 
 ```console
 sudo npm install --global hardhat-shorthand
 hardhat-completion install
 ```
-Теперь можно набирать команды следующим образом добивая их TAB-ом:
+
+Now you can type commands as follows by finishing them with TAB:
+
 ```console
 > hh te[press TAB]
 > hh test
