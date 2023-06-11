@@ -6,7 +6,15 @@ require("hardhat-gas-reporter");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.17",
+  solidity: {
+    version: "0.8.17",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  },
   networks: {
     /* README: https://hardhat.org/hardhat-network/docs/metamask-issue */
     hardhat: {
@@ -14,7 +22,7 @@ module.exports = {
     },
     goerli: {
       url: `https://eth-goerli.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
-      accounts: [process.env.ALCHEMY_PRIVATE_KEY]
+      accounts: [process.env.PRIVATE_KEY]
     }
   },
   etherscan: {
