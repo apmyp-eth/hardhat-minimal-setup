@@ -42,11 +42,23 @@ npx hardhat coverage
 
 В коде тестов можно добавить `.only` к `it`, чтобы выполнить конкретный тест, либо использовать `grep` в консоли при вызове тестов.
 
+## Задачи
+
+Код задач находится в папке `tasks`, пример запуска находится в коде.
+
 ## Запуск локальной ноды и разворачивание на ней контракта
 
 ```
 npx hardhat node
 npx hardhat run scripts/deploy.js --network localhost
+```
+
+## Запуск локальной ноды в режиме форка
+
+В файле `.env.example` требуется прописать `ALCHEMY_FORK_API_KEY`
+
+```
+npx hardhat node --config hardhat-fork.config.js
 ```
 
 ## Верификация кода контракта на Etherscan
