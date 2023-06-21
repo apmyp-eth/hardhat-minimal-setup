@@ -3,15 +3,14 @@ const ethers = hre.ethers;
 const GreeterArtifact=require('../artifacts/contracts/Greeter.sol/Greeter.json');
 
 async function main() {
-    const greeterAddr='0x...'; // TODO: replace with your own address!
-    const [signer] = await ethers.getSigners();
-    const greeterContract=new ethers.Contract(greeterAddr,GreeterArtifact.abi,signer);
+    const greeterAddr='0x..'; // TODO: replace with your own address!
+    const greeter=await ethers.getContractAt(GreeterArtifact.abi,greeterAddr);
 
-    const setGreetResult=await greeterContract.setGreet("Hello from newbie!")
-    console.log(setGreetResult)
+    const setGreetResult=await greeter.setGreet("Hello from newbie!")
+    //console.log(setGreetResult)
     await setGreetResult.wait()
 
-    const result=await greeterContract.getGreet()
+    const result=await greeter.getGreet()
     console.log(result);
 }
 

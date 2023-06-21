@@ -1,23 +1,19 @@
-const { network } = require("hardhat");
 const hre = require("hardhat");
 const ethers = hre.ethers;
 
 async function main() {
 
-  if(network.name=="hardhat") {
+  if(hre.network.name=="hardhat") {
     console.warn("You are trying to deploy a contract to the Hardhat Network which " +
                  "gets automatically created and destroyed every time. "+
                  "Use the Hardhat option '--network localhost'");
   }
 
-  const [signer] = await ethers.getSigners();
+  const greeter = await hre.ethers.deployContract("Greeter");
 
-  const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy();
+  await greeter.waitForDeployment();
 
-  await greeter.deployed();
-
-  console.log(`Deployed to ${greeter.address}`);
+  console.log(`Deployed to ${greeter.target}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

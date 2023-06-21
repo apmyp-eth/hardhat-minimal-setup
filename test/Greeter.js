@@ -1,28 +1,33 @@
-const { ethers } = require("hardhat");
+const { loadFixture } = require("@nomicfoundation/hardhat-toolbox/network-helpers");
 const { expect } = require("chai");
   
 describe("Greeter", function () {
-    let owner,attacker;
-    let greeter;
 
-    beforeEach(async function() {
-        [owner, attacker] = await ethers.getSigners();
+    async function deploy() {
+        const [owner, attacker] = await ethers.getSigners();
 
         const Greeter = await ethers.getContractFactory("Greeter", owner);
-        greeter = await Greeter.deploy();
-        await greeter.deployed();
-    })
+        const greeter = await Greeter.deploy();
+
+        return { owner, attacker, greeter };
+    }
 
     it("Should be deployed", async function() {
-        expect(greeter.address).to.be.properAddress
+        const { greeter } = await loadFixture(deploy);
+        
+        expect(greeter.target).to.be.properAddress
       })
 
     it("Empty greet after deploy", async function() {
+        const { greeter } = await loadFixture(deploy);
+
         const greet = await greeter.getGreet();
         expect(greet).to.eq("");
     })
 
     it("Set greet",async function () {
+        const { greeter } = await loadFixture(deploy);
+
         const msg = "Hello, world!";
         const tx = await greeter.setGreet(msg);
         await tx.wait();
@@ -32,6 +37,7 @@ describe("Greeter", function () {
     })
 
     it("Revert set greet for non-owner",async function () {
+        const { greeter, attacker } = await loadFixture(deploy);
         const msg = "Hello, world!";
         
         await expect(
